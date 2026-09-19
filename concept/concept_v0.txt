@@ -1,0 +1,44 @@
+Daten:
+- Monatliche Fundamental Daten und Trends von Einzelaktien
+- Monatliche Makrodaten und Trends
+- Monatliche Marktrenditen (aggregiert)
+- Monatliche Einzelaktienrenditen
+
+--> Testdaten werden nicht revealed
+
+Metrik/Ziel:
+- Cross Sectional Vorhersage Abnormaler Renditen(verteilung)? --> Wie mit Signal-to-Noise Unregelmäßigkeit umgehen? --> reicht es die Testdaten nicht zeitlich zu splitten (train: 1950-2010; test: 2010-2020), sondern vielmehr 
+
+Was sind hier die Best Practices? Welche Metrik wird angelegt und wie wird mit dem Signal-to-Noise Problem in Datensets beim Empirical asset pricing umgegangen?
+
+Spezifikationen zur Modellierung/Vorhersage:
+- input - immer gleich: daten in gegebenem Format (es müssen nicht alle genutzt werden, aber das Modell muss funktionieren und darf keine weiteren daten, anderen formate oder anderen Bennenungen erfordern)
+- output - immer gleich: 
+- keine Reporduktion bestehender Studien (nicht mal mehr Zitierungen. Die Gedanken sollen frei von Einflüssen sein und geprägt von Originalität)
+- Originelle Ideen - klare Begründung in der explorationsphase, weshalb eine neue Technologie, ein neues Konzept, oder ähnliches auf empirical asset pricing übertragen werden sollte. Es muss cool und neu sein, nicht verstaubt und schon ausprobiert in studien.
+- In der Exploration: Simplizität > Komplexität...Es geht um den "Proof of concept" und um das pareto prinzip. Optimierungen werden später in der exploitation umgesetzt
+--> für diese Exploration vs. Exploitation Prompting und Modi muss ich noch mal recherchieren und abgrenzen #TODO
+--> Komplexität, abnehmender grenznutzen der optimierung und wert von änderungen wird gut in program.md abgehandelt ("All else being equal, simpler is better. A small improvement that adds ugly complexity is not worth it.")
+
+Vorgaben:
+- kein aufurfen externer APIs
+- begrenzung des compute beachten (auf was? kaggle cli? wie kann man das univeresell für modellierung und ml spezifizieren?)
+- Daten(quelle)
+- Testdaten dürfen nicht inspiziert werden. Auf Testdaten darf nicht trainiert werden.
+- train/model.py dürfen verändert werden, prepare und die evaluation nicht!
+- 
+
+Exploration:
+- man braucht ein archiv
+
+Exploitation:
+- Autoresearch ist gut für exploitation bestehender Methoden, jedoch regelt es nicht explizit exploration. Exploration muss dementsprechend 
+
+--> schlank wie autoresearch!
+
+Modell (Post Trained) / Prompt / Skill nutzen, welcher in der Exploration originalität, wissenschaftliche kreativität, Exzentritäten und das hinterfragen der Paradigmen einprägt, statt "hill climbing" und "gap filling" zu betreiben #TODO dahingehend recherchieren
+
+Grundsätzlich will ich auf widerverwendbare Komponenten achten, die sich in andere Research Systeme (z.B. die Heureka Machine von Recursive, wenn sie veröffentlicht wird, Systeme von Sakana AI, Anthropic, OpenAI und GDM/Discovery Loop) implementieren lassen
+Ich frage mich, wie diese Systeme aussehen, wenn sie autonomer werden und mehr Freiheit bekommen (nicht mehr nur ein Skript und strikte eingrenzungen. Dafür ist aber Selbstmanagement notwendig und ein System, welches dieses strukturiert ermöglicht)
+
+v2, falls v1 erfolgreich ggf. Text inkooperieren (v2 ungleich v0 und v1!)

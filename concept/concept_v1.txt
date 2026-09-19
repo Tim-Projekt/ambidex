@@ -1,0 +1,84 @@
+Konzept: Autoresearch exploited ein Konzept. Für wissenschaftlichen Beitrag ist es sinnvoller auch zu explorieren. Das vorliegende Konzept probiert sowohl exploitation, als auch exploration sinnvoll zusammenzubringen.
+
+Explore Modus:
+
+
+Vorgehen, Charakter und Ideen:
+Originalität
+Exzentritzismus als Prompt Parameter (Local exploration vs. Adjacent exploration vs. Distant exploration) oder als Autonomer Spielraum (kontextuelles Verständnis und gewissenhaftes lernen und ausprobieren unterschiedlicher Explorationsansätze)
+ggf. Interdisziplinäres denken
+Ambiguitätstoleranz
+Lernen
+Risikofreude
+Geschwindigkeit (!)
+Flexibilität (nicht in Sackgassen verharren, kein sunk cost fallacy/bias/syndrom)
+Experimentieren (hier ggf. typische explorative maßnahmen von wissenscaftlern)
+
+Ideen erzeugen (kommt zuerst)
+
+Anomalien aus den letzten Läufen als Startpunkt, nicht freies Brainstorming (an sich nicht schelcht, weil ich Exploration und Exploitation nicht als abgehackte Phasen betrachten will (Virtuous Cycle, Co-Evolution, Double-Loop Learning!, Meta-Learning), die nicht aus den Erfahrungen lernen und harmonieren/sich komplementieren, jedoch sollte dieses "voneinander lernen" und das Gesamtbild im Hinblick auf Muster/Anomalien analysieren, nicht dazu führen, dass die Exploration sich verfängt und immeer tiefer in eine Sackgasse rutscht. Exploration sollte das Gesamtbild betrachten und verstehen, wann nachforschen (sich ein Detail anschauen) und wann neu forschen (neue konzepte, radikal, interdiszipläres denken...) sinnvoller sind. Hier muss also eine art mentalität und heuristik entstehen, die dem Agenten die Autonomieg gibt zu unterschieden, wann welche Art von Exploration sinnvoll ist (Local exploration vs. Adjacent exploration vs. Distant exploration))
+Züge: weglassen / übertreiben bis es bricht / fragen warum etwas funktioniert hat / abschauen / zwei Erfolge kombinieren
+Bewusst außerhalb des aktuellen Zweigs suchen, wenn die letzten Ideen alle Varianten voneinander waren
+Mehrere Kandidaten sammeln, bevor bewertet wird
+--> hier ggf. Spielraum und Autonomie geben um den Grad der Exploration zu steueren (siehe auch oben --> Local exploration vs. Adjacent exploration vs. Distant exploration)
+
+Kandidaten bewerten
+
+Erwarteter Erkenntnisgewinn: was weiß ich hinterher, das ich jetzt nicht weiß, egal wie es ausgeht
+Kosten bis zum ersten Signal, nicht Gesamtkosten (das muss im Prompt und im Hinblick auf die exploration sandbox klarer ausgedrückt werden)
+Alles als Verhältnis: Erkenntnis pro Kosten
+Testbarkeit: kann ich eine konkrete Vorhersage aufschreiben? Wenn nein, ist es noch keine Hypothese
+Redundanz: ist das eine Umformulierung von etwas schon Getestetem?
+NEU: Originalität: ist das eine neue Idee, die auf logischen Argumenten, anstatt auf fancy Buzz Words und kombinierten Zitierungen basiert (meine Bemerkung bei Agenten und LLMs: Sie tendieren dazu sich sehr stark an bestehenden Konzepten, Denkweisen und Studein/Autoren "festzuklammern")
+Umkehrbarkeit: wie teuer ist es, das wieder rauszunehmen (in der Exploration ist das doch unwichtig)
+
+Auswählen
+
+Proportional zur geschätzten Erfolgswahrscheinlichkeit ziehen, nicht immer das Beste nehmen (Thompson Sampling kann man besser formulieren im Prompt)
+Kandidaten mit sehr hohen Kosten bis zum ersten Signal zurückstellen, auch wenn sie attraktiv wirken (komisch formuliert)
+Bei Gleichstand das nehmen, was am weitesten weg vom aktuellen Zweig liegt (uncertinty nicht klar bennant)
+Wechselkosten mitrechnen: den laufenden Faden zu verlassen kostet Einarbeitung (Im sinne der kontextuellen Ambidextrie würde ich das ganz wegnehmen, da der Agent häufig dazu tendiert von einem Pfad Abhängig zu werden und diesen Stark zu verfolgen (Sunk Cost Bias, Hytery))
+
+Nach der Auswahl
+
+Vorhersage aufschreiben, vor dem Lauf
+Abbruchbedingung vorher festlegen: woran merke ich, dass diese Richtung tot ist
+
+#TODO: Es braucht formalisierungen im Sinne einer program.md für das Verhalten in der Sandbox (konkret, als auch im sinne einer flexiblen, explorativen wissenschaftlichen Methode, die sowohl die Mentalität von oben beinhaltet, als auch einen klaren Prozess vorgibt und als Metrik "vielversprechend nochmehr formalisiert)
+
+Wird die kontextuelle Ambidextrie klar getrennt? Die Frage: Sollte Exploration und Exploitation ein eigener Modus sein, der nach einleitung durch einen deziderten primer prompt enforcen wird, oder wird die kontextuelle ambidextrie und die beiden rollen/perspketiven in einem prompt abgehandelt, der sozusagen beides kombiniert und probiert zu harmonisieren
+Meine Einschätzung:
+Exploration und Exploitation durch Skills oder Primer Prompts zu enforcen ist ggf. praktikabler und grent die beiden verhaltensweisen strikt ab, aber sie zu harmonisieren könnte potentiel einen harmonischeren, reiferen, synergetischeren Ansatz bewirken
+eventually wird der prompt vermutlich harmonisiert (ist das effektiv? Skills und Prompts können ja auch helfen in bestimmte rollen zu schlüpfen und eine menatlität/perspektive einzunehmen) und die klare abgrenzung aufgelöst. Die Stärke und Schwäche von Autoresearch liegt in der Metrik basierten klaren Guidance. Wenn man 
+
+Wichtig: Seine Aufgabe ist nicht "eine Lösung" zu finden und diese dann immer weiter zu vertiefen (nur noch lokale Exploration auf Sub Fragestellungen), sondern unterschiedliche interessante Konzepte und Architekturen zu testen und autonom einzuschätzen, wie vielversprechend was ist. Dabei ist es wichtig, dass der Agent zurück tritt und Pfadabhängigkeiten erkennt und hinterfragt. Wie vielversprechend ein Pfad (eine Forschungsrichtung) ist, sollte eine Metrik sein, die zwar in ihrer Natur qualitativ und subjektiv ist, aber sie sollte Heursitiekn unterleigten, die exploration unterstützen und Pfadabhängigkeit explizit machen.
+
+Entscheidung:
+
+program.md
+exploit.md
+explore.md
+
+Sandbox für explore:
+probes/0012_kurzname.py
+--> sollten die probes lauffähig sein? Nein, aber der MVP am Ende muss lauffähig getetstet werden und eine Baseline schlagen, bevor er in der exploitation verfolgt wird
+
+Vorgehen sollte heuroistisch sein, aber nicht zu workflow artig. Der Agent sollte sein Vorgehen bewerten können und Denkweisen vermitteln können, aber keine staaren Abläufe.
+
+Metrik und Judgment während der Exploration:
+development of qualitative judgment over time.
+
+
+Wichtig: In der Exploration sollte der agent wirklich Code schreiben, mit dem er Fragen beantwortet und Sachen lernt, di er ex-ante nicht weiß. Wenn er Code schreibt und dabei weiß, was ungefähr raus kommt, ist das unnötig und erzeugt pfadabhängigkeit. Der Agent muss wirklich neues ausprobieren und Fragen stellen, die außerhalb des gewohnten liegen. Prompt Engeneeering muss dazu genutzt werden diese wirklich explorative Haltung zu enforcen.
+
+Problem: Wie lässt sich goodhearting, pfadabhängigkeit und wissenschaftliche unkreativität (reprdouktion oder kombination bestehender Ideen, grundsätzliche perspektive und deutung wird nicht hinterfragt, ein Selbstmanagemnt bei dem der Agent zurücktritt und seine Ideen wirklich hinterfragt findet nicht statt, anstattdessen findet der Agent eine qualitative deutung, die er wieder udn wier reinforced, nur noch details hinzufügt usw.) vermeiden, wenn der Agent sich in der Exploration selbst durch "Gespür" bewerten soll?
+
+Das problem ist nicht goodhearting aufgrund der quantitativen Metrik in der Exploitation. Das Gespür sollte auf einem 
+Das Problem ist pfadabhängigkeit und wissenschaftliche unkreativität. Pfadabhängigkeit wird durch die results.tsv, den unterbrechenden Zyklus und klares Prompting für neue Ansätze, bei dennen man total (!) neues ausprobiert und zurücktritt (!). Das soltle immer zu beginn der Explorations Phase empfohlen werden und als Heurisitk sollte auf mögliche Pfadabhängigkeit anhand von typischen merkmalen relfektiert werden können. Kreativität und wahre Exloration sollten autonom kalibiriert werden, wobei (ki-typische) unkreatvität (also z.B. Pfadabhängigkeit, Begründungen und Goodhearting, kein zurücktreten, kein verwerfen von Konzepten, kein Ausprobieren von wirklich neuem (siehe oben im Bezug auf das Experiemnteiren, wenn man das Ergebniss schonkennt das problem ist, nicht lokale, begrenzte exploration/
+
+Die results.tsv aus exploration und exploitation sollte rein numerisch sein und nur ansätze mit anmen versehen, nicht mit Begründungungen, um zwar den Space klar zu machen, aber keine regressive Pfad Hysteria zu erzeugen
+
+Kontextuelle Ambidextrie:
+- Exploit Modus erst beenden, wenn der Agent es für sinnvoll hält (nicht nur wenn es konvergiert, sondern auch wenn der agent denkt, dass eine weitere iteration nicht mehr viel bringen würde oder ein signal dezidiert explored werden sollte)
+- Explore Modus sollte eine Mentalität bekommen (siehe oben) und erst exploitation anstoßen, wenn es klare signale dafür gibt, dass das Konzept vielversprechend ist (reasoning, intuition, first principles, neuheit, interdisziplinarität…) und ein „Minimum Viable Proof“ erbracht wurde (Kompilierbarkeit & Stabilität, ggf. übertreffen einer Baseline). Gleichzeitig sollte Hysterese vermieden werden, indem eine Kostensensibilität o.ä. eingeführt werden.
+- Es sollte eine kontextuelle, situative möglichst autonome Entscheidung mit Guidance durch prompt Heuristiken geschehen
