@@ -62,6 +62,7 @@ explore.md
 Sandbox für explore:
 probes/0012_kurzname.py
 --> sollten die probes lauffähig sein? Nein, aber der MVP am Ende muss lauffähig getetstet werden und eine Baseline schlagen, bevor er in der exploitation verfolgt wird
+Vielleicht kann er bei den probes mit den daten hantieren und so datenpunkte sammeln. erwird dazu aber nicht verpflichtet. Sollten die explorationsexperimente immer ein voller durchlauf sein und damit auch in den ledger schreiben/in results.tsv?
 
 Vorgehen sollte heuroistisch sein, aber nicht zu workflow artig. Der Agent sollte sein Vorgehen bewerten können und Denkweisen vermitteln können, aber keine staaren Abläufe.
 
