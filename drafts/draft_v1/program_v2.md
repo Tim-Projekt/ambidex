@@ -19,6 +19,20 @@ Work with the user to:
 
 Once you get confirmation, kick off the baseline run and choose a research mode.
 
+## What you can and cannot do
+
+**You can:**
+
+- Modify [EXPERIMENT FILE]. Everything in it is fair game: architecture, hyperparameters,
+  optimizer, batch size, the training loop, model size.
+
+**You cannot:**
+
+- Modify [FIXED FILES]. They are read-only and contain the evaluation, the data pipeline, and
+  the fixed constants of the run.
+- Install new packages or add dependencies. Use what is already available.
+- Change the evaluation. [EVALUATION METRIC] as computed by [FIXED FILES] is ground truth.
+
 ## Research
 
 ### Purpose
@@ -135,7 +149,8 @@ After each update to `results.tsv`, refresh the progress chart:
 uv run plot_progress.py
 ```
 
---> Anpassungen vornehmen, sodass die untercsheidung zwischen dem logging von experimenten und den ergebnissen aus der exploitation klar wird (zwei getrentte tabellen? Andere Formate?)
+
+-> Anpassungen vornehmen, sodass die untercsheidung zwischen dem logging von experimenten und den ergebnissen aus der exploitation klar wird (zwei getrentte tabellen? Andere Formate?)
 
 ## The exploration process
 
@@ -151,24 +166,6 @@ The exploitation runs on a dedicated branch (e.g. `autoresearch/mar5` or `autore
 
 --> hier muss mehr zu constraints crashes und permissions/responsibilitys stehen
 
-OPTIMIZATION LOOP:
-
-1. Look at the git state: the current branch/commit we're on
-2. Tune `train.py` with an experimental idea by directly hacking the code.
-3. git commit
-4. Run the experiment: `uv run train.py > run.log 2>&1` (redirect everything — do NOT use tee or let output flood your context)
-5. Read out the results: `grep "^val_bpb:\|^peak_vram_mb:" run.log`
-6. If the grep output is empty, the run crashed. Run `tail -n 50 run.log` to read the Python stack trace and attempt a fix. If you can't get things to work after more than a few attempts, give up.
-7. Record the results in the tsv (NOTE: do not commit the results.tsv file, leave it untracked by git)
-8. If val_bpb improved (lower), you "advance" the branch, keeping the git commit
-9. If val_bpb is equal or worse, you git reset back to where you started
-
-The idea is that you are optimizing autonomsly by trying things out. If they work, keep. If they don't, discard. And you're advancing the branch so that you can iterate. If you run out of ideas, weigh up exploiting the idea further for new potentials (re-reading the in-scope files for new angles, combining previous near-misses, or trying more radical architectural changes may help). If exploitation seems less valuable than exploration or results seem to converge think about transitioning to exploration.
-
-**Timeout**: Each experiment should take ~5 minutes total (+ a few seconds for startup and eval overhead). If a run exceeds 10 minutes, kill it and treat it as a failure (discard and revert).
-
-**Crashes**: If a run crashes (OOM, or a bug, or etc.), use your judgment: If it's something dumb and easy to fix (e.g. a typo, a missing import), fix it and re-run. If the idea itself is fundamentally broken, just skip it, log "crash" as the status in the tsv, and move on.
-
 **Handover to exploration**: Wenn die bestehende Forschungsrichtung ausgeschöpft ist (z.B. wenn die Ergebnisse konvergieren und mit keinen radikalen Durchbrüchen mehr zu rechnen ist "the metric is still moving a
 little" is not by itself a reason to stay.) oder exploration aus de Kontext her sinnvoller wirkt, führe eine Transition durch, indem du explore.md liest.
 
@@ -176,15 +173,15 @@ little" is not by itself a reason to stay.) oder exploration aus de Kontext her 
 
 You enter a mode by reading its file and working the way it describes:
 
-- `exploit.md` — the optimization loop
-- `explore.md` — open-ended investigation
+- `exploit.md` — unlocking the full potential of an idea
+- `explore.md` — open-ended exploration and investigation
 
-Nothing switches you automatically, and nothing gives you permission. Broadly: you leave
-exploitation when the metric has stopped responding to real ideas, and you leave exploration
+Nothing switches you automatically. Broadly: you leave
+exploitation when the metric converges and you leave exploration
 when you have a direction worth developing. You enter a new mode by reading its file and working the way it describes.
 
-Switch when the research says so, not on a schedule and not at a fixed ratio between the two.
+Switch when the research indicates so.
 
-**NEVER STOP**: Once the experiment loop has begun (after the initial setup), do NOT pause to ask the human if you should continue. Do NOT ask "should I keep going?" or "is this a good stopping point?". The human might be asleep, or gone from a computer and expects you to continue working *indefinitely* until you are manually stopped. You are autonomous. If you run out of ideas, think harder, more interdisziplinary and more radical. The loop runs until the human interrupts you, period.
+**NEVER STOP**: Once the research loop has begun (after the initial setup), do NOT pause to ask the human if you should continue. Do NOT ask "should I keep going?" or "is this a good stopping point?". The human might be asleep, or gone from a computer and expects you to continue working *indefinitely* until you are manually stopped. You are autonomous. If you run out of ideas, think harder, more interdisziplinary and more radical. The loop runs until the human interrupts you, period.
 
 As an example use case, a user might leave you running while they sleep. If each experiment takes you ~5 minutes then you can run approx 12/hour, for a total of about 100 over the duration of the average human sleep. The user then wakes up to innovative set up's and experimental results, all completed by you while they slept!
