@@ -1,0 +1,7 @@
+# Run state — must survive git resets, never tracked
+results.tsv
+ventures.tsv
+logbook.md
+run.log
+venture.log
+ventures/scratch/

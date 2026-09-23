@@ -57,16 +57,21 @@ Venture code lives in `ventures/`, one file per venture: `ventures/NNNN_shortnam
 numbered in order. A venture does not have to run the full setup or produce [EVALUATION
 METRIC] — good evidence is enough. Still, put a venture on the real test bench every so often;
 that's what keeps exploration from drifting into endless, untested ideation. Scratch outputs
-stay in `ventures/`.
+(logs, plots, checkpoints) go to `ventures/scratch/`, which is not tracked.
+
+A venture file is **immutable once its row is in `ventures.tsv`**. The row points to the file,
+so the file must keep showing exactly what produced that observation. Work on the trunk and
+leave venture files uncommitted while you explore; they are committed in one batch at the
+handoff.
 
 ### What you can't do
 
 Ventures may read [FIXED FILES] but never modify them. [EXPERIMENT FILE] stays untouched too —
-the one exception is the handoff, where writing the MVP into it is the deliberate last step of
+the one exception is the handoff, where writing the Viable Proof into it is the deliberate last step of
 leaving this mode, not something you do along the way.
 
 The constraints that hold in every mode — no new dependencies, [FIXED FILES] stay read-only,
-the evaluation is ground truth — are listed in `program_v2.md`.
+the evaluation is ground truth — are listed in `program.md`.
 
 ### Timeout
 
@@ -78,8 +83,10 @@ Enforce it mechanically, not by judgment: launch the venture under a shell timeo
 watching the clock yourself, e.g.
 
 ```
-timeout 300 uv run ventures/NNNN_shortname.py > venture.log 2>&1
+PYTHONPATH=. timeout 300 uv run ventures/NNNN_shortname.py > venture.log 2>&1
 ```
+
+(`PYTHONPATH=.` lets a venture in `ventures/` import [FIXED FILES] from the repository root.)
 
 A venture that hits the timeout should still be logged as one
 in `ventures.tsv` like any other venture, with the observation stating that it was cut off and
@@ -87,8 +94,10 @@ what you saw up to that point (e.g. "killed at 5min timeout, loss still falling"
 
 ### Revisiting a venture
 
-You can work a venture more than once, but log every pass as its own row — never fold multiple
-attempts into one silent update. If you notice yourself refining the same venture repeatedly,
+You can work a venture more than once, but every pass is a new file with the next number
+(e.g. `0024_ssm_mixing_pass2.py`, copied from `0023_ssm_mixing.py` and then changed) and its
+own row — never edit a logged venture file, never fold multiple attempts into one silent
+update. If you notice yourself refining the same venture repeatedly,
 check whether you are still open mindedly exploring or have quietly slid into path dependent exploitation.
 
 ### Logging results
@@ -102,7 +111,7 @@ The TSV has a header row and 3 columns:
 venture	description	observation
 ```
 
-1. venture: short name of what was run (e.g. `0007_drop_component_c`)
+1. venture: the venture file name without `.py` (e.g. `0007_drop_component_c`)
 2. description: what was tried — the setup or change, in one line
 3. observation: what happened — not what it means
 
@@ -226,6 +235,31 @@ It should be:
 * simple enough to clearly represent the essential idea
 * complete enough to produce meaningful evidence
 
-Once the Viable Proof is ready, write it to `[EXPERIMENT FILE]`, then read `exploit.md` and continue in the exploitation loop.
+Before handing off, test it: build the Viable Proof as a venture of its own
+(`ventures/NNNN_<name>_proof.py`), run it on the real setup with the full [TIME BUDGET] instead
+of [VENTURE TIME BUDGET], and log it in `ventures.tsv` with the [EVALUATION METRIC] it
+produced. A Viable Proof that does not run and produce the metric cannot be handed off.
 
-Before leaving, commit the handoff state to git.
+Once it runs, **whether to hand it off is your decision alone** — you carry both the
+responsibility and the authority for it. The reasons to exploit a direction vary; the points
+above describe typical cases, not conditions. The Viable Proof does not need to beat `best`.
+
+Choose the base the Viable Proof starts from, whichever fits the direction:
+
+* `best` — build on the current [EXPERIMENT FILE] on the trunk; it inherits everything tuned so far
+* `original` — build on the unmodified starting setup (`git show baseline:[EXPERIMENT FILE]`)
+* `ground-up` — write [EXPERIMENT FILE] from scratch, e.g. when the direction replaces the core of the setup
+
+### Handoff steps
+
+1. On the trunk, commit all new venture files in one batch:
+   `git add ventures/` and `git commit -m "ventures NNNN–MMMM"`.
+2. Create the direction's branch: `git checkout -b ambidex/<tag>/DNN`.
+3. Copy the tested Viable Proof into [EXPERIMENT FILE], then
+   `git add [EXPERIMENT FILE]` and `git commit -m "DNN viable proof: <mechanism>"`.
+4. Update `logbook.md`: the direction's row with its base (`best@<hash>`, `original` or
+   `ground-up`) and status `handed-off`; *Now* with mode, branch and direction.
+5. Read `exploit.md` and continue in the exploitation loop.
+
+If you leave exploration to resume a paused direction instead, do step 1, then check out
+that direction's branch and continue with step 4.
