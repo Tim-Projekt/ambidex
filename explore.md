@@ -13,7 +13,7 @@ Exploration means looking for what could fundamentally change the research direc
 
 **Step back.** The current approach is context, not commitment. Question its framing, assumptions, architecture and mechanisms.
 
-**Seek real novelty.** Do not generate variants of the current idea by default. Consider new mechanisms, technologies, fields, first-principles formulations and radically different approaches. You may perform internet research on these topics.
+**Seek real novelty.** Do not generate variants of the current idea by default. Consider new mechanisms, technologies, fields, first-principles formulations and radically different approaches.
 
 **Explore uncertainty.** Run experiments whose outcome you genuinely do not know. Do not use experiments to confirm a story you already believe.
 
@@ -49,7 +49,7 @@ These judgments are **provisional, not conclusions**. Their purpose is to decide
 
 A venture is an act of exploration: a small experiment, a simulation, a setup script, or a
 full run against [EVALUATION METRIC]. It does not need to produce a presentable result — its
-purpose is to generate meaningful evidence for your research approache.
+purpose is to generate meaningful evidence for your research approach.
 
 ### Sandbox
 
@@ -70,8 +70,7 @@ Ventures may read [FIXED FILES] but never modify them. [EXPERIMENT FILE] stays u
 the one exception is the handoff, where writing the Viable Proof into it is the deliberate last step of
 leaving this mode, not something you do along the way.
 
-The constraints that hold in every mode — no new dependencies, [FIXED FILES] stay read-only,
-the evaluation is ground truth — are listed in `program.md`.
+The constraints in `program.md` hold in every mode.
 
 ### Timeout
 
@@ -80,10 +79,10 @@ minutes) is a reasonable default, shorter than a full exploitation run since a v
 needs to produce signal, not a finished result.
 
 Enforce it mechanically, not by judgment: launch the venture under a shell timeout instead of
-watching the clock yourself, e.g.
+watching the clock yourself, e.g. for autoresearch:
 
 ```
-PYTHONPATH=. timeout 300 uv run ventures/NNNN_shortname.py > venture.log 2>&1
+PYTHONPATH=. timeout [VENTURE TIME BUDGET] uv run ventures/NNNN_shortname.py > venture.log 2>&1
 ```
 
 (`PYTHONPATH=.` lets a venture in `ventures/` import [FIXED FILES] from the repository root.)
@@ -111,7 +110,7 @@ You can work a venture more than once, but every pass is a new file with the nex
 (e.g. `0024_ssm_mixing_pass2.py`, copied from `0023_ssm_mixing.py` and then changed) and its
 own row — never edit a logged venture file, never fold multiple attempts into one silent
 update. If you notice yourself refining the same venture repeatedly,
-check whether you are still open mindedly exploring or have quietly slid into path dependent exploitation.
+check whether you are still open-mindedly exploring or have quietly slid into path-dependent exploitation.
 
 ### Logging results
 
@@ -158,7 +157,13 @@ Understand the current research landscape without treating the current branch as
 When you enter exploration, make sure you are on the trunk (`ambidex/<tag>`), then read
 `logbook.md`, `results.tsv` and `ventures.tsv`. Use these as signals, not as the limits of exploration. Look for anomalies and open questions, but also deliberately look beyond what has already been tried.
 
-Research the domain, inspect new technologies and developments, transfer ideas across disciplines, reconsider the problem from first principles, or radically simplify its formulation. You may perform internet research on these topics.
+**Tabula rasa on entry.** Every entry into exploration starts from a clean slate. The direction
+you have just been working on is one entry in the logbook, not your starting point: set aside
+its assumptions, framing and code, and begin again from the problem itself. Collect
+possibilities from there before you let yourself return to anything that has been tried — if
+you do return, it should be because the fresh view leads there, not because it is familiar.
+
+Research the domain, inspect new technologies and developments, transfer ideas across disciplines, reconsider the problem from first principles, or radically simplify its formulation.
 
 The goal is to identify **interesting research possibilities**, not merely extend the current path.
 
@@ -210,7 +215,7 @@ Step back when the exploration shows clear signs of path dependence:
 * you elaborate your own last idea instead of questioning it
 * you build an argument for the direction you already picked
 
-When these patterns appear, immeadiatly step back. Do not respond by refining the same idea further.
+When these patterns appear, immediately step back. Do not respond by refining the same idea further.
 
 ##### Tabula Rasa
 
