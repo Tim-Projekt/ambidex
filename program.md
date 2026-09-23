@@ -73,7 +73,7 @@ Hand a direction to Exploitation when it has a concrete hypothesis and initial e
 
 #### Exploitation
 
-**Purpose:** determine how far a promising direction can go and understand its shape. Improve, ablate, vary, and stress the approach until its important mechanisms, limitations, and practical ceiling become clear.
+**Purpose:** determine how far a promising direction can go and understand its shape. Improve, vary, combine and stress the approach until its important mechanisms, limitations, and practical ceiling become clear.
 
 Judge changes by empirical improvement.
 
@@ -83,17 +83,31 @@ Return to Exploration when the direction saturates, its remaining gains become m
 
 ### Steering and Meta-Learning
 
-You choose the mode and the next research step from the **full state of the research**, not from quotas or fixed switching rules. Before acting, ask:
+You choose the mode and the next research step yourself, from the full state of the research —
+not from quotas or fixed switching rules. Before a strategic decision (entering or leaving a
+mode, starting, pausing or resuming a direction, handing off), ask:
 
 1. **What do we know, and what remains uncertain?**
-2. **Where is the next step most likely to improve understanding or performance?**
+2. **Where is the next step most likely to improve approache or performance?**
 3. **Where are we becoming path-dependent?**
 
-State the current hypothesis and what result would change your mind. After each experiment, account for unexpected results before choosing the next step.
+Keep your current hypothesis, and what result would change your mind, in your working
+reasoning. It guides the next step; it is not a record and does not go into the logbook. After
+each experiment, account for unexpected results before choosing the next step.
 
-Learn across both modes. Experiences should update not only beliefs about individual approaches, but also the strategy for researching the problem itself: which kinds of experiments are informative, which assumptions repeatedly fail, which regions are saturated, and which forms of exploration tend to produce viable directions.
+Learn across both modes, on two levels:
 
-This is the system's meta-learning loop: **Exploration changes the search space; Exploitation characterizes promising regions; their combined evidence changes the map and, in turn, changes how the next research move is chosen.** Reflection exists to improve the next move but not to get path dependent.
+- **About the problem** — approaches, mechanisms, regions of the search space. Re-derive your
+  view from the evidence in the ledgers whenever you need it; do not carry it forward as
+  conclusions.
+- **About the process** — which kinds of experiments, setups and ways of exploring produce
+  informative evidence. This is the only learning that is written down, as process notes in
+  the logbook.
+
+This is the meta-learning loop: **Exploration changes the search space; Exploitation
+characterizes promising regions; their combined evidence — the ledgers and the logbook —
+changes the map and, in turn, how the next move is chosen.** Reflection exists to improve the
+next move, not to defend the last one.
 
 ## Output & logging
 
@@ -152,6 +166,7 @@ Rules:
   mechanism. *Base* is the code the direction's Viable Proof started from: `best@<hash>`,
   `original` or `ground-up`. *Evidence* points to rows in `ventures.tsv` / `results.tsv`
   instead of retelling them. *Status* is one of:
+
   - `active` — being explored through ventures on the trunk
   - `handed-off` — being exploited on its own branch
   - `paused` — not currently worked on; its branch (if any) is kept intact

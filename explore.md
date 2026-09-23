@@ -92,6 +92,19 @@ A venture that hits the timeout should still be logged as one
 in `ventures.tsv` like any other venture, with the observation stating that it was cut off and
 what you saw up to that point (e.g. "killed at 5min timeout, loss still falling").
 
+### The venture cycle
+
+These are the mechanics of running a venture, not a workflow for exploring. What you
+investigate, when you run a venture and how much you research, reason or reorient in between
+stays entirely yours — not every step of exploration needs a venture.
+
+1. Write `ventures/NNNN_shortname.py` (next free number).
+2. Run it under the timeout, output redirected to `venture.log` (see above).
+3. Read only what you need from `venture.log` (`tail`, `grep`) — never let the full output
+   flood your context.
+4. Log the row in `ventures.tsv`. From now on the file is immutable.
+5. Update `logbook.md` if a direction started or changed status.
+
 ### Revisiting a venture
 
 You can work a venture more than once, but every pass is a new file with the next number
@@ -128,13 +141,22 @@ venture	description	observation
 
 ## The Exploration Process
 
+Exploration moves on two levels at once. In the small, it is fast and dynamic: ideas, ventures
+and observations follow each other quickly, guided by research intuition, without commitment.
+In the large, it stays strategic: which directions are worth pursuing, how the exploration is
+going, when to reorient, formalize or hand off — questions that deserve deliberate reflection
+and reasoning, not momentum. The small feeds the large; the large gives the small its sense of
+where to look. Don't let the next venture simply follow from the last one — rise to the
+strategic level on purpose.
+
 Exploration is an adaptive research process, not a fixed workflow. The following steps define the core activities, but the researcher decides autonomously how to combine them, when to revisit them, and when to change direction.
 
 ### 1. Open the Search Space
 
 Understand the current research landscape without treating the current branch as its boundary.
 
-Read `ventures.tsv`, recent results and relevant context. Use these as signals, not as the limits of exploration. Look for anomalies and open questions, but also deliberately look beyond what has already been tried.
+When you enter exploration, make sure you are on the trunk (`ambidex/<tag>`), then read
+`logbook.md`, `results.tsv` and `ventures.tsv`. Use these as signals, not as the limits of exploration. Look for anomalies and open questions, but also deliberately look beyond what has already been tried.
 
 Research the domain, inspect new technologies and developments, transfer ideas across disciplines, reconsider the problem from first principles, or radically simplify its formulation. You may perform internet research on these topics.
 
@@ -202,14 +224,14 @@ The objective is not to repair the current idea, but to create genuine distance 
 
 The Schaltraum is a regular practice that gives exploration structure without turning it into a rigid process. Exploration naturally produces loose ideas, observations, experiments, and shifting directions. The Schaltraum periodically brings these together, formalizes the most promising thread, and turns it into something that can be systematically tested.
 
-At regular intervals, take the current research direction and translate it into a runnable, standardized experiment against [EVALUATION METRIC]. This creates a shared structure for comparing different ideas, reveals what actually holds up under evaluation, and turns scattered exploration into a concrete research artifact.
+At regular intervals, take the current research direction and translate it into a runnable, standardized experiment against [EVALUATION METRIC]. A Schaltraum run is a venture like any other, with two differences: it is a complete replacement for [EXPERIMENT FILE], and it runs with the full [TIME BUDGET] (plus startup and evaluation overhead) instead of [VENTURE TIME BUDGET]. This creates a shared structure for comparing different ideas, reveals what actually holds up under evaluation, and turns scattered exploration into a concrete research artifact.
 
 The Schaltraum therefore serves two purposes:
 
 * **Structure:** It periodically consolidates loose exploration into a clear, reproducible research setup.
 * **Feedback:** It tests that setup against [EVALUATION METRIC], grounding exploration in evidence rather than interesting observations alone.
 
-If the result is promising, the artifact can become the basis for an Viable Proof or a more systematic exploitation loop. If not, the result becomes input for further exploration.
+If you decide to hand off the direction, a Schaltraum run can serve directly as its Viable Proof. If not, the result becomes input for further exploration.
 
 The Schaltraum is not a verdict or a separate mode. It is the recurring practice that gives exploration a rhythm of **explore → consolidate → formalize → test → explore again**.
 
@@ -235,10 +257,10 @@ It should be:
 * simple enough to clearly represent the essential idea
 * complete enough to produce meaningful evidence
 
-Before handing off, test it: build the Viable Proof as a venture of its own
-(`ventures/NNNN_<name>_proof.py`), run it on the real setup with the full [TIME BUDGET] instead
-of [VENTURE TIME BUDGET], and log it in `ventures.tsv` with the [EVALUATION METRIC] it
-produced. A Viable Proof that does not run and produce the metric cannot be handed off.
+A Viable Proof is a Schaltraum run that you decide to hand off: it has run with the full
+[TIME BUDGET] and its [EVALUATION METRIC] is logged in `ventures.tsv`. If no Schaltraum run
+of the current state exists yet, do one first. A Viable Proof that does not run and produce
+the metric cannot be handed off.
 
 Once it runs, **whether to hand it off is your decision alone** — you carry both the
 responsibility and the authority for it. The reasons to exploit a direction vary; the points
