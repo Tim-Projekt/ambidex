@@ -15,7 +15,8 @@ Exploration is one phase of the endless research loop (`program.md`). It ends by
 exploitation, never by stopping.
 
 Exploration may look at the current best, but its question is what else could work, not how to
-improve this one — that is exploitation.
+improve this one. The test: if the result of a venture would be used by adding it to the current
+best, it is exploitation — do it in exploitation.
 
 ## Mind-Set of an Explorer
 
