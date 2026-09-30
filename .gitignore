@@ -6,6 +6,7 @@ run.log
 venture.log
 ventures/scratch/
 progress.png
+plots/
 
 # Python
 .venv/
