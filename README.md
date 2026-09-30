@@ -48,30 +48,39 @@ Both modes share `logbook.md`, a short record of which directions were tried, wh
 
 ## Cool, how do I run it?
 
-The example task is Tiny Shakespeare: character-level language modeling with 60 seconds of CPU training per run. I picked it because my Windows laptop can't run nanochat and renting an H100 wasn't in the budget. Any task that fits the parameter table works.
+ambidex works on any task that has a fixed evaluation and an experiment file the agent can change. The repo comes with one example, Tiny Shakespeare: character-level language modeling with a 60-second CPU training budget per run. I picked it because my Windows laptop can't run nanochat and renting an H100 wasn't in the budget. How to swap in your own task is described further down.
 
-You need Python 3.10+, [uv](https://docs.astral.sh/uv/), git and a coding agent (I use Claude Code). On Windows, run the shell scripts in Git Bash.
+You need [uv](https://docs.astral.sh/uv/) (it installs Python for you if needed), git and a coding agent (I use Claude Code). On Windows, run `./new_run.sh` in Git Bash; the `uv` commands work in any shell.
 
 ```bash
 # 1. get the template
 git clone https://github.com/Tim-Projekt/ambidex.git
 cd ambidex
 
-# 2. create a run repo from the template and the example setup
-#    (this also fills in the parameters for the task)
+# 2. create a run repo next to the template, from the example setup
+#    (this also fills in the parameters for the task; on Windows, git may print a
+#    harmless "LF will be replaced by CRLF" warning)
 ./new_run.sh setups/shakespeare ../ambidex-shakespeare
 cd ../ambidex-shakespeare
 
-# 3. install dependencies and download the data (~1 MB)
+# 3. install dependencies (the first time downloads a CPU build of PyTorch, about a minute)
+#    and the data (~1 MB, saved to ~/.cache/ambidex-shakespeare/)
 uv sync
 uv run prepare.py
+
+# 4. optional sanity check: one baseline run
+uv run train.py
 ```
 
-Then open your agent in the run repo, ideally with permissions disabled so it doesn't sit waiting for approvals overnight, and prompt:
+Budget about two and a half minutes for one run: 60 seconds of training plus startup and evaluation. The baseline should end with a `val_bpc:` line somewhere around 3.6 to 3.7.
+
+Then open your agent in the run repo and prompt:
 
 ```
 Read program.md and let's set up a new run.
 ```
+
+For a run overnight the agent must not wait for approvals, so it needs to run without permission prompts (in Claude Code, `--dangerously-skip-permissions`). Only do that in a folder you can throw away, since the agent can then run any command without asking.
 
 The agent picks a run tag, creates the branch, the ledgers and the logbook, and asks you to confirm. Don't just reply "go ahead". In my runs the agent took that as "run the baseline, try one idea, report back" and stopped after the first venture. I send this instead:
 
@@ -80,6 +89,19 @@ Go. From now on run the research loop from program.md indefinitely. I'm away and
 ```
 
 While it runs, `logbook.md` shows where the research stands. `uv run analysis.py` plots all experiments to `progress.png`, and `uv run plot_directions.py` draws the chart at the top of this page to `plots/directions.png`.
+
+## Using your own task
+
+A task is a folder in `setups/`. It needs four things:
+
+- `prepare.py`: the fixed part. It loads or downloads the data and contains the evaluation. The agent may read it but never change it, so this is where the ground truth lives.
+- `train.py` (or whatever you call it): the experiment file. It holds a simple baseline, runs within a fixed time budget and ends by printing a summary block with lines like `metric_name: value`, so the agent can grep the result.
+- `pyproject.toml`: the dependencies. The agent can't install new packages, so include everything it might reasonably need.
+- `params.md`: the parameter table (experiment file, fixed files, metric and which direction is better, run command, time budgets, setup check). Copy the one from `setups/shakespeare/` and change the values.
+
+Then create a run with `./new_run.sh setups/<your-task> ../ambidex-<your-task>` and continue as above. The prompts don't need any changes.
+
+Good tasks run in minutes rather than hours, have an evaluation the agent can't game, and leave room for approaches that are fundamentally different from the baseline. If the baseline is already the only sensible way to solve the problem, there isn't much to explore.
 
 ## Project structure
 
