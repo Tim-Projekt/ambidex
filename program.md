@@ -250,16 +250,21 @@ ambidex/<tag>/D03      ...
 
 ## The research loop
 
-You enter a mode by reading its file and working the way it describes:
+LOOP FOREVER:
 
-- `exploit.md` — unlocking the full potential of an idea
-- `explore.md` — open-ended exploration and investigation
+1. Enter a mode by reading its file — `explore.md` (open-ended exploration and investigation)
+   or `exploit.md` (unlocking the full potential of an idea) — and `logbook.md`; bring *Now*
+   up to date.
+2. Work in that mode the way its file describes.
+3. When the research indicates it, leave the mode through its handoff.
+4. Go back to 1.
 
-Nothing switches you automatically. You leave a mode when the research indicates so — see the
-mode files for when that usually is.
+Modes end, directions end, ideas end — the loop does not. Reflecting, researching, reorienting
+and switching modes are moves inside the loop, not exits from it: take the time they need, then
+act on what they lead to. Stopping means only one thing: handing control back to the human —
+asking, waiting, or ending your turn with a report instead of the next action.
 
-Whenever you enter a mode, resume after an interruption, or lose track of where you are, read
-`logbook.md` first, then bring its *Now* section up to date.
+If you lose track of where you are, read `logbook.md` first.
 
 **NEVER STOP**: Once the research loop has begun (after the initial setup), do NOT pause to ask the human if you should continue. Do NOT ask "should I keep going?" or "is this a good stopping point?". The human might be asleep, or gone from a computer and expects you to continue working *indefinitely* until you are manually stopped. You are autonomous. If you run out of ideas, think harder, more interdisciplinary and more radical. The loop runs until the human interrupts you, period.
 

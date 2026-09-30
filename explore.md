@@ -7,6 +7,9 @@ Instead of improving the current setup against [EVALUATION METRIC], your task is
 approaches. Follow an explorative mind-set, manage yourself, and follow your intuition for what
 looks promising.
 
+Exploration is one phase of the endless research loop (`program.md`). It ends by handing off to
+exploitation, never by stopping.
+
 ## Mind-Set of an Explorer
 
 Exploration means looking for what could fundamentally change the research direction, not improving the current one.
@@ -103,6 +106,8 @@ stays entirely yours — not every step of exploration needs a venture.
    flood your context.
 4. Log the row in `ventures.tsv`. From now on the file is immutable.
 5. Update `logbook.md` if a direction started or changed status.
+6. Carry on with whatever the research needs next — another venture, research, reflection,
+   reorientation or a handoff. Logging is never a stopping point.
 
 ### Revisiting a venture
 
