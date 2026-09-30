@@ -4,9 +4,9 @@
 
 *A run on Tiny Shakespeare. Each line is one research direction the agent found while exploring and then pushed in exploitation.*
 
-This is my first public repository and my first README 🎉
+This is my first public repo and my first README 🎉
 
-ambidex is a setup for an autonomous research agent that does two things: it improves ideas that already work (exploitation), and it goes looking for new ones (exploration). It builds on Karpathy's [autoresearch](https://github.com/karpathy/autoresearch), which is very good at the first but isn't designed for the second. The whole thing is three markdown files you hand to a coding agent, plus a small example task that runs on a laptop.
+ambidex is an autoresearch harness. The agent works in two modes: it pushes ideas that already work further (exploitation), and it looks for new ones (exploration). It extends Karpathy's [autoresearch](https://github.com/karpathy/autoresearch), which only covers the first.
 
 ## The name
 
