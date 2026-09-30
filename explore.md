@@ -81,6 +81,10 @@ Ventures may read [FIXED FILES] but never modify them. [EXPERIMENT FILE] stays u
 the one exception is the handoff, where writing the Viable Proof into it is the deliberate last step of
 leaving this mode, not something you do along the way.
 
+Ventures never fit anything on the validation data: a weight or setting chosen by trying values
+against [EVALUATION METRIC] inside a venture makes its number meaningless. Fit on held-out
+training data instead.
+
 The constraints in `program.md` hold in every mode.
 
 ### Timeout
