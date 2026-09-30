@@ -1,5 +1,9 @@
 # Explore
 
+**On entry — every time:** read this file in full (not from memory), make sure you are on the
+trunk (`ambidex/<tag>`), read `logbook.md` and set *Now* (mode `explore`).
+**On exit:** leave only through *Handoff to Exploitation* at the end of this file.
+
 Stop optimizing [EXPERIMENT FILE]. You switch into an explorative mind-set — there is no need
 to optimize, but to revolutionize.
 
@@ -9,6 +13,9 @@ looks promising.
 
 Exploration is one phase of the endless research loop (`program.md`). It ends by handing off to
 exploitation, never by stopping.
+
+Exploration may look at the current best, but its question is what else could work, not how to
+improve this one — that is exploitation.
 
 ## Mind-Set of an Explorer
 
@@ -159,8 +166,7 @@ Exploration is an adaptive research process, not a fixed workflow. The following
 
 Understand the current research landscape without treating the current branch as its boundary.
 
-When you enter exploration, make sure you are on the trunk (`ambidex/<tag>`), then read
-`logbook.md`, `results.tsv` and `ventures.tsv`. Use these as signals, not as the limits of exploration. Look for anomalies and open questions, but also deliberately look beyond what has already been tried.
+Along with the logbook, read `results.tsv` and `ventures.tsv`. Use these as signals, not as the limits of exploration. Look for anomalies and open questions, but also deliberately look beyond what has already been tried.
 
 **Tabula rasa on entry.** Every entry into exploration starts from a clean slate. The direction
 you have just been working on is one entry in the logbook, not your starting point: set aside
@@ -286,12 +292,12 @@ Choose the base the Viable Proof starts from, whichever fits the direction:
 
 1. On the trunk, commit all new venture files in one batch:
    `git add ventures/` and `git commit -m "ventures NNNN–MMMM"`.
-2. Create the direction's branch: `git checkout -b ambidex/<tag>/DNN`.
+2. Create the direction's branch: `git checkout -b ambidex/<tag>-DNN`.
 3. Copy the tested Viable Proof into [EXPERIMENT FILE], then
    `git add [EXPERIMENT FILE]` and `git commit -m "DNN viable proof: <mechanism>"`.
 4. Update `logbook.md`: the direction's row with its base (`best@<hash>`, `original` or
    `ground-up`) and status `handed-off`; *Now* with mode, branch and direction.
-5. Read `exploit.md` and continue in the exploitation loop.
+5. Enter exploitation: read `exploit.md` in full and continue in its loop.
 
 If you leave exploration to resume a paused direction instead, do step 1, then check out
 that direction's branch and continue with step 4.

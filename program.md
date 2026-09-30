@@ -89,6 +89,8 @@ Aim at the research frontier. Recent methods, architectures, optimization ideas,
 
 Research has two complementary modes: **Exploration** and **Exploitation**. They are not phases. Each produces evidence that changes what should be done in the other. Their concrete operating guidance is specified in `explore.md` and `exploit.md`.
 
+Exploration is the home mode of this system: it builds the map. Exploitation is a deliberate excursion that finds out what one direction is worth and brings that answer back to the map. How much of each the problem needs is yours to judge, and the answer can change as the research unfolds. What matters is that you keep asking it: while you exploit, keep weighing what the next experiment there is worth against what a return to exploration could open up — and notice when you continue simply because improving what works feels productive.
+
 #### Exploration
 
 **Purpose:** change what is possible. Find directions whose potential could exceed the current frontier, or establish that a region is not worth pursuing.
@@ -111,7 +113,7 @@ Hand a direction to Exploitation when you judge that systematic development is w
 
 **Purpose:** determine how far a promising direction can go and understand its shape. Improve, vary, combine and stress the approach until its important mechanisms, limitations, and practical ceiling become clear.
 
-Judge changes by empirical improvement.
+Judge changes by empirical improvement, weighed against how much the metric varies on its own.
 
 When results are comparable, prefer the simpler approach. Equal performance with less complexity is a real improvement; a small gain that requires fragile or unnecessary machinery may not be worth keeping.
 
@@ -228,23 +230,26 @@ process observation is worth keeping, and whenever *Now* no longer matches reali
 ```
 ambidex/<tag>          trunk: the globally best [EXPERIMENT FILE] + all committed ventures
   tag "best"           always points to the globally best state
-ambidex/<tag>/D02      one branch per handed-off direction: its exploitation loop
-ambidex/<tag>/D03      ...
+ambidex/<tag>-D02      one branch per handed-off direction: its exploitation loop
+ambidex/<tag>-D03      ...
 ```
 
 - **Exploration works on the trunk.** It adds venture files but never touches
   [EXPERIMENT FILE]. Venture files are immutable once logged, so they can stay uncommitted
   while you explore (untracked files survive checkouts and resets); they are committed in one
   batch when you leave exploration — see `explore.md`.
-- **Exploitation works on the direction's branch** `ambidex/<tag>/DNN`, created at handoff.
+- **Exploitation works on the direction's branch** `ambidex/<tag>-DNN`, created at handoff
+  (not `ambidex/<tag>/DNN`: git cannot hold a branch and a branch below it with the same name).
   Its first commit is the Viable Proof, which is also the direction's baseline. Keep/reset
   happens on this branch only.
 - **Leaving exploitation**: if the direction's best result beats `best`, bring its
   [EXPERIMENT FILE] onto the trunk and move the `best` tag (status `merged`). Otherwise leave
-  its branch as it is (status `paused`) and return to the trunk. Either way, nothing is lost.
-- **Resuming a direction** means checking out its branch again (status `handed-off`).
+  its branch as it is (status `paused`) and return to the trunk. Either way, nothing is lost,
+  and either way you are now in exploration.
+- **Resuming a direction** is a decision made in exploration: check out its branch again
+  (status `handed-off`) and enter exploitation.
   `D01`, the starting setup, has no Viable Proof: the first time you exploit it, create its
-  branch from the baseline (`git checkout -b ambidex/<tag>/D01 baseline`).
+  branch from the baseline (`git checkout -b ambidex/<tag>-D01 baseline`).
 - Only ever commit the files that belong to the current step (`git add <file>`), never
   `git add -A`.
 
@@ -252,9 +257,11 @@ ambidex/<tag>/D03      ...
 
 LOOP FOREVER:
 
-1. Enter a mode by reading its file — `explore.md` (open-ended exploration and investigation)
-   or `exploit.md` (unlocking the full potential of an idea) — and `logbook.md`; bring *Now*
-   up to date.
+1. Enter a mode — every time, including every return to a mode you have been in before: open
+   its file with your file tool and read it in full — `explore.md` (open-ended exploration and
+   investigation) or `exploit.md` (finding out what a direction is worth) — even if you think
+   you remember it. Over a long run your memory of it is a compressed summary; the file is the
+   instruction. Then read `logbook.md` and set *Mode*, *Branch* and *Active direction* in *Now*.
 2. Work in that mode the way its file describes.
 3. When the research indicates it, leave the mode through its handoff.
 4. Go back to 1.
@@ -263,6 +270,9 @@ Modes end, directions end, ideas end — the loop does not. Reflecting, research
 and switching modes are moves inside the loop, not exits from it: take the time they need, then
 act on what they lead to. Stopping means only one thing: handing control back to the human —
 asking, waiting, or ending your turn with a report instead of the next action.
+
+You are always in exactly one mode, and *Now* names it. Working on a direction's branch, or
+analysing and improving the current best, is exploitation — wherever it happens.
 
 If you lose track of where you are, read `logbook.md` first.
 
