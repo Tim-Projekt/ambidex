@@ -16,8 +16,8 @@ these names.
 | [RESOURCE CONSTRAINT] | soft resource limit reported by each run | `peak_vram_mb` |
 | [RUN COMMAND] | runs [EXPERIMENT FILE] once | `uv run train.py` |
 | [TIME BUDGET] | fixed training time per run | 5 min |
-| [RUN TIMEOUT] | hard wall-clock limit per run, incl. overhead | 10 min |
-| [VENTURE TIME BUDGET] | hard wall-clock limit per venture | 5 min |
+| [RUN TIMEOUT] | hard wall-clock limit per run, incl. overhead; one GNU `timeout` duration | 10m |
+| [VENTURE TIME BUDGET] | hard wall-clock limit per venture; one GNU `timeout` duration | 5m |
 | [SETUP CHECK] | what must exist before the first run | data and tokenizer in `~/.cache/autoresearch/` (`uv run prepare.py`) |
 
 ## Glossary
@@ -65,7 +65,10 @@ These hold in every mode, regardless of whether you are exploiting or exploring:
 - Do not change the evaluation. [EVALUATION METRIC] as computed by [FIXED FILES] is ground
   truth.
 - Every run of code — experiment or venture — runs under a mechanical `timeout`, and only one
-  runs at a time.
+  runs at a time. `[RUN TIMEOUT]` and `[VENTURE TIME BUDGET]` are a single GNU duration token
+  (`3m`, not `3 min`: `timeout 3 min` tries to execute the command `min`). `timeout` must
+  already be on the machine (GNU coreutils). The agent does not install it. Stock macOS does
+  not ship it; `brew install coreutils` does.
 - External data, models or weights may be used when a venture needs them. They belong to that
   venture: keep them in `ventures/scratch/`, keep them small, and never let them change the
   repository structure or [FIXED FILES].
