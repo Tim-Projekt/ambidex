@@ -72,7 +72,7 @@ uv run prepare.py
 uv run train.py
 ```
 
-Budget about two and a half minutes for one run: 60 seconds of training plus startup and evaluation. The baseline should end with a `val_bpc:` line somewhere around 3.6 to 3.7.
+Budget about two and a half minutes for one run: 60 seconds of training plus startup and evaluation. The baseline should print a `val_bpc:` line. Around 3.6 to 3.7 is what this setup produced on the Windows laptop it was written on, and that is the baseline drawn off-scale in the chart above. The training budget is wall-clock, so a faster CPU finishes more steps in the same 60 seconds and the number drops. That is expected, not a failed setup. Read `num_steps` and `training_seconds` in the summary, and compare later runs to the baseline you just measured on your own machine, not to 3.6–3.7.
 
 Then open your agent in the run repo and prompt:
 
