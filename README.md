@@ -50,7 +50,7 @@ Both modes share `logbook.md`, a short record of which directions were tried, wh
 
 ambidex works on any task that has a fixed evaluation and an experiment file the agent can change. The repo comes with one example, Tiny Shakespeare: character-level language modeling with a 60-second CPU training budget per run. I picked it because my Windows laptop can't run nanochat and renting an H100 wasn't in the budget. How to swap in your own task is described further down.
 
-You need [uv](https://docs.astral.sh/uv/) (it installs Python for you if needed), git and a coding agent (I use Claude Code). On Windows, run `./new_run.sh` in Git Bash; the `uv` commands work in any shell.
+You need [uv](https://docs.astral.sh/uv/) (it installs Python for you if needed), git, a `timeout` command and a coding agent (I use Claude Code). `timeout` is GNU coreutils. Stock macOS does not ship it; `brew install coreutils` provides it. On Windows, run `./new_run.sh` in Git Bash; the `uv` commands work in any shell. The values for `[RUN TIMEOUT]` and `[VENTURE TIME BUDGET]` are a single duration token (`3m`, not `3 min`).
 
 ```bash
 # 1. get the template

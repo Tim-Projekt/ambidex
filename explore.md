@@ -89,8 +89,8 @@ The constraints in `program.md` hold in every mode.
 
 ### Timeout
 
-Every venture that runs code gets a fixed wall-clock budget — [VENTURE TIME BUDGET] (e.g. 5
-minutes) is a reasonable default, shorter than a full exploitation run since a venture only
+Every venture that runs code gets a fixed wall-clock budget — [VENTURE TIME BUDGET] (e.g. `5m`)
+is a reasonable default, shorter than a full exploitation run since a venture only
 needs to produce signal, not a finished result.
 
 Enforce it mechanically, not by judgment: launch the venture under a shell timeout instead of
@@ -100,7 +100,7 @@ watching the clock yourself, e.g. for autoresearch:
 PYTHONPATH=. timeout [VENTURE TIME BUDGET] uv run ventures/NNNN_shortname.py > venture.log 2>&1
 ```
 
-(`PYTHONPATH=.` lets a venture in `ventures/` import [FIXED FILES] from the repository root.)
+(`[VENTURE TIME BUDGET]` is one GNU duration token, `2m` not `2 min`. `PYTHONPATH=.` lets a venture in `ventures/` import [FIXED FILES] from the repository root.)
 
 A venture that hits the timeout should still be logged as one
 in `ventures.tsv` like any other venture, with the observation stating that it was cut off and

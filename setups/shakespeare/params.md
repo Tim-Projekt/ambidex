@@ -10,7 +10,7 @@ The parameters of this run. Everywhere else, the files refer to these names.
 | [RESOURCE CONSTRAINT] | soft resource limit reported by each run | `peak_mem_mb` (keep well below the RAM of your machine) |
 | [RUN COMMAND] | runs [EXPERIMENT FILE] once | `uv run train.py` |
 | [TIME BUDGET] | fixed training time per run | 60 s |
-| [RUN TIMEOUT] | hard wall-clock limit per run, incl. overhead | 3 min |
-| [VENTURE TIME BUDGET] | hard wall-clock limit per venture | 2 min |
+| [RUN TIMEOUT] | hard wall-clock limit per run, incl. overhead; one GNU `timeout` duration | 3m |
+| [VENTURE TIME BUDGET] | hard wall-clock limit per venture; one GNU `timeout` duration | 2m |
 | [SETUP CHECK] | what must exist before the first run | `~/.cache/ambidex-shakespeare/input.txt` exists (`uv run prepare.py`) |
 
