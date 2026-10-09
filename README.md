@@ -2,7 +2,7 @@
 
 ![Directions compared](directions.png)
 
-*A run on Tiny Shakespeare. Each line is one research direction the agent found while exploring and then pushed in exploitation.*
+*A run on Tiny Shakespeare. Each line is one research direction the agent found while exploring and then pushed in exploitation. The `results.tsv` behind this figure is not in the repository. Ledgers stay untracked on purpose, so cloning the repo does not regenerate the chart.*
 
 This is my first public repo and my first README 🎉
 

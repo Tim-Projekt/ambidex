@@ -134,7 +134,7 @@ not from quotas or fixed switching rules. Before a strategic decision (entering 
 mode, starting, pausing or resuming a direction, handing off), ask:
 
 1. **What do we know, and what remains uncertain?**
-2. **Where is the next step most likely to improve approache or performance?**
+2. **Where is the next step most likely to improve the approach, or performance?**
 3. **Where are we becoming path-dependent?**
 
 Keep your current hypothesis, and what result would change your mind, in your working
